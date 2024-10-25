@@ -20,13 +20,13 @@ url = "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html
 # review_rating
 # image_url
 # PARAMETRE : l'url du produit
-# RETOUR : une liste des elementsdemandes
+# RETOUR : une liste des elements demandes
 def get_book_infos(url):
     liste_infos_livre = [""]
     # récupère les données html de la page
     page = rq.get(url)
 
-    if page.status_code == 200:   # code 200 = OK
+    if page.status_code == 200:   # code 200 = récup OK
         
         # pour recherche dans le code html
         soup = bs(page.content, 'html.parser')
@@ -67,7 +67,7 @@ def get_book_infos(url):
         book_desc = balises[len(balises)-1] # le descriptif est le dernier de la liste
         # print(book_desc)
         
-        # recherche et recuperarion de la categorie
+        # recherche et recuperation de la categorie
         # selection de la balise <ul> et de la classe "breadcrumb" car combinaison unique sur la page
         search = soup.find("ul", class_="breadcrumb")
         # recheche des balises <a> dans cette recherche
@@ -76,7 +76,22 @@ def get_book_infos(url):
         for i in liste_a:
             liste_str.append(i.get_text())
         category = liste_str[2]
-        print(category)
+        # print(category)
+
+        # recherche et récupération de nombre d'étoile
+        liste_nombre_etoile = ["One","Two","Three","Four","Five"]
+        nombre_etoiles = 1
+        for n in liste_nombre_etoile:
+            if soup.find("p", class_="star-rating " + n) != None: # None = pas d'élément correspondant
+                break
+            nombre_etoiles += 1
+
+        # recherche et récupération de l'url de l'image
+        # selection de la balise <img> car unique sur la page
+        search_url_image  = soup.find("img")
+        # concatenation de l'url de base avec l'extraction de la source moins les 6 premiers caractères
+        image_url = "https://books.toscrape.com/" + search_url_image['src'][6:]
+        #print(image_url)
         
         # creation de la liste avec les infos du livres
         # on commence par l'url et on ajoute les autres infos
@@ -88,8 +103,10 @@ def get_book_infos(url):
         liste_infos_livre.append(number_available)
         liste_infos_livre.append(book_desc)
         liste_infos_livre.append(category)
-
+        liste_infos_livre.append(str(nombre_etoiles))
+        liste_infos_livre.append(image_url)
         
+
         return liste_infos_livre
 
     else:
@@ -112,7 +129,7 @@ def write_book_csv(liste_infos):
         ligne += i
         ligne += ","
     # suppression de la virgule de fin et remplacement par \n
-    #
+    ligne = ligne.strip(ligne[-1])+"\n"
 
     # ecriture dans le fichier des infos sur le livre
     f.write(ligne)
