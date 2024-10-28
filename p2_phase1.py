@@ -3,14 +3,9 @@ from bs4 import BeautifulSoup as bs
 import requests as rq
 
 
-# URL de la page qui nous intéresse
-url = "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html"
-
-
-
 # RECUPERE LES INFOS SUR UN LIVRE
 # product_page_url
-# universal_ product_code (upc)
+# universal_product_code (upc)
 # title
 # price_including_tax
 # price_excluding_tax
@@ -22,7 +17,6 @@ url = "https://books.toscrape.com/catalogue/a-light-in-the-attic_1000/index.html
 # PARAMETRE : l'url du produit
 # RETOUR : une liste des elements demandes
 def get_book_infos(url):
-    liste_infos_livre = [""]
     # récupère les données html de la page
     page = rq.get(url)
 
@@ -38,18 +32,17 @@ def get_book_infos(url):
         # recherche et recuperation de l'UPC, du prix HT et du prix TTC 
         # selection de la balise <table> et de la classe "table table-striped" car combinaison unique sur la page
         infos_brut = soup.find("table", class_="table table-striped")
-        # print(infos_brut)
+
         # recherche des balise <td> contenant les infos
         infos_liste = infos_brut.findAll("td")
         # suppression des balises
         liste_textes = []
         for info in infos_liste:
             liste_textes.append(info.get_text())
-        # print(infos_liste)
-        # print(liste_textes)
-
+        
        
         # affectation des infos
+        # UPC, prix HT, prix TTC et nombre disponible
         UPC = liste_textes[0]
         price_exc_tax = liste_textes[2]
         price_exc_tax = price_exc_tax[1:len(price_exc_tax)-1]   # suppression du texte de la monnaie
@@ -63,9 +56,8 @@ def get_book_infos(url):
         balises = []
         for balise in balises_p:
             balises.append(balise.get_text())   # suppression des balises dans la chaine de caracteres
-        # print(balises_p)
-        book_desc = balises[len(balises)-1] # le descriptif est le dernier de la liste
-        # print(book_desc)
+        # le descriptif est la quatrieme balise de la liste + ajout des guillements pour gestion des virgules
+        book_desc = '"' + balises[3] + '"' 
         
         # recherche et recuperation de la categorie
         # selection de la balise <ul> et de la classe "breadcrumb" car combinaison unique sur la page
@@ -76,7 +68,6 @@ def get_book_infos(url):
         for i in liste_a:
             liste_str.append(i.get_text())
         category = liste_str[2]
-        # print(category)
 
         # recherche et récupération de nombre d'étoile
         liste_nombre_etoile = ["One","Two","Three","Four","Five"]
@@ -91,11 +82,11 @@ def get_book_infos(url):
         search_url_image  = soup.find("img")
         # concatenation de l'url de base avec l'extraction de la source moins les 6 premiers caractères
         image_url = "https://books.toscrape.com/" + search_url_image['src'][6:]
-        #print(image_url)
         
         # creation de la liste avec les infos du livres
         # on commence par l'url et on ajoute les autres infos
-        liste_infos_livre[0] = url
+        liste_infos_livre = []
+        liste_infos_livre.append(url)
         liste_infos_livre.append(UPC)
         liste_infos_livre.append(title)
         liste_infos_livre.append(price_exc_tax)
@@ -106,35 +97,42 @@ def get_book_infos(url):
         liste_infos_livre.append(str(nombre_etoiles))
         liste_infos_livre.append(image_url)
         
-
+        # on renvoit la liste des infos
         return liste_infos_livre
 
     else:
-        print("Erreur")
+        print("Page livre non trouvée")
 
-# ecrit les infos sur un livre dans un fichier
-def write_book_csv(liste_infos):
-    header = "product_page_url,UPC,title,price_including_tax,price_excluding_tax,number_available,product_description," \
-            "category,review_rating,image_url\n"
 
+# ecrit le header du fichier csv
+def write_header_csv(string_header):
+    
     # ouvre un fichier livre.csv en écriture ou le créé
     f = open('livre.csv', 'w')
     
     # ecrit le header du fichier csv
-    f.write(header)
+    f.write(string_header)
 
-    # écrit les données d'un livre sur une ligne dans le fichier livre.csv
+    
+# ecrit les infos sur un livre dans un fichier
+def write_book_csv(liste_infos):
+
+    # ouvre un fichier livre.csv en écriture ou le créé
+    f = open('livre.csv', 'a')
+    
+    # insertion du separateur ,
     ligne = ""
     for i in liste_infos:
         ligne += i
         ligne += ","
     # suppression de la virgule de fin et remplacement par \n
-    ligne = ligne.strip(ligne[-1])+"\n"
+    ligne = ligne[:-1]+"\n"
 
     # ecriture dans le fichier des infos sur le livre
     f.write(ligne)
 
 
-# EXECUTION DU PROGRAMME
-liste_infos = get_book_infos(url)
-write_book_csv(liste_infos)
+
+
+    
+
