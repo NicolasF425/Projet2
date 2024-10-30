@@ -5,11 +5,6 @@ import re
 from datetime import datetime as dt
 import os
 
-header_test = "product_page_url,universal_product_code,title,price_including_tax,price_excluding_tax,number_available,product_description," \
-            "category,review_rating,image_url\n"
-
-url_test = "https://books.toscrape.com/catalogue/scott-pilgrims-precious-little-life-scott-pilgrim-1_987/index.html"
-category_test = "Sequential Art"
 
 # RECUPERE LES INFOS SUR UN LIVRE
 # product_page_url
@@ -59,7 +54,7 @@ def get_book_infos(url, category):
         price_inc_tax = price_inc_tax[1:len(price_inc_tax)-1]   # suppression du texte de la monnaie
         number_available = liste_textes[5]
 
-        numbers_available = re.findall(r'\d+', number_available)    # recherche de la quantite
+        numbers_available = re.findall(r'\d+', number_available)    # recherche de la quantite dans le chaine de caracteres
         if numbers_available:
             number_available = numbers_available[0]
         else:
@@ -89,12 +84,12 @@ def get_book_infos(url, category):
         image_url = "https://books.toscrape.com/" + search_url_image['src'][6:]
         ext_img = image_url[-4:]
 
-        # enregistrement de l'image
+        # création du repertoire/dossier img si besoin et enregistrement de l'image
         dir_img = "img"
         isExist = os.path.exists(dir_img)
         if not isExist:
             os.makedirs(dir_img)
-            print(dir_img + " cree")
+            print("creation du repertoire " + dir_img)
         r = rq.get(image_url, allow_redirects=True)
         open(dir_img + "/" + UPC + ext_img, 'wb').write(r.content)
         
@@ -116,7 +111,7 @@ def get_book_infos(url, category):
         return liste_infos_livre
 
     else:
-        print("Page livre non trouvée")
+        print("Page infos livre non trouvée")
 
 
 # CREE LE FICHIER ET ECRIT LE HEADER
@@ -125,11 +120,12 @@ def get_book_infos(url, category):
 def write_header_csv(string_header, category):
     filename = category # nom par défaut
 
+    # Creation repertoire csv si besoin
     dir_csv = "csv"
     isExist = os.path.exists(dir_csv)
     if not isExist:
         os.makedirs(dir_csv)
-        print(dir_csv + " cree")
+        print("creation du repertoire " + dir_csv)
     
     horodatage = dt.now()
     horodatage = horodatage.strftime('-%Y-%m-%d-%H-%M-%S')
@@ -165,10 +161,4 @@ def write_book_csv(liste_infos, filename):
 
     # ecriture dans le fichier des infos sur le livre
     f.write(ligne)
-
-
-# CODE POUR TEST
-#liste_infos = get_book_infos(url_test, category_test)
-#filename = write_header_csv(header_test, liste_infos[7])
-#write_book_csv(liste_infos, filename)
 

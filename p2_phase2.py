@@ -3,9 +3,8 @@ from bs4 import BeautifulSoup as bs
 import requests as rq
 from p2_phase1 import get_book_infos, write_header_csv, write_book_csv
 
-url_category_test1 = "https://books.toscrape.com/catalogue/category/books/romance_8/index.html"
-
-header_test = "product_page_url,universal_product_code,title,price_including_tax,price_excluding_tax,number_available,product_description," \
+# 
+header = "product_page_url,universal_product_code,title,price_including_tax,price_excluding_tax,number_available,product_description," \
             "category,review_rating,image_url\n"
 
 
@@ -34,7 +33,7 @@ def books_infos_by_category(url):
             # si premiere boucle on recupere la categorie et on cree le fichier avec le header
             if first:
                 category = soup.find("li", class_="active").get_text()
-                filename = write_header_csv(header_test, category)
+                filename = write_header_csv(header, category)
                 first = False
                 print("En cours de traitement : " + category)
             
@@ -65,13 +64,6 @@ def books_infos_by_category(url):
 
         else:
             print("Page categorie " + url + "non trouvée")
-    print(str(total_articles) + " traités")
+    print(str(total_articles) + " elements")
 
-          
-# CODE POUR TEST
-#books_infos_by_category(url_category_test1)
-
-
-
-
-
+  
