@@ -17,11 +17,27 @@ Prérequis :
 + Python 3 ou supérieur
 + Packages :  BeautifulSoup4, Requests
 
-Execution du programme :
+**Pour créer l'environnement virtuel _env_ :**
+Dans le répertoire du projet exécuter : python -m venv env
+Puis dans .../env/Scripts exécuter _activate_
+
+**Pour installer les 2 packages requis :**
+
+Aller dans le répertoire _env_ puis exécuter :
+
+pip install requests
+
+pip install beautifulsoup4
+
+
+**Execution du programme :**
 
 python main.py
 
 Créé un répertoire csv et un répertoire img
-Inscrit les livres dans un fichier csv par catégories; Télécharge également les images pour tous les livres.
+
+Inscrit les livres dans un fichier csv par catégories;
+
+Télécharge également les images pour tous les livres.
 
 
