@@ -82,8 +82,9 @@ def write_header_csv(string_header, category):
         os.makedirs(dir_csv)
         print("creation du repertoire " + dir_csv)
     
+    # ajout horodatage du fichier
     horodatage = dt.now()
-    horodatage = horodatage.strftime('-%Y-%m-%d-%H-%M-%S')
+    horodatage = horodatage.strftime('-%Y-%m-%d')
     filename = dir_csv + "/" + filename + horodatage + ".csv"
 
     # ouvre un fichier livre.csv en écriture ou le créé
