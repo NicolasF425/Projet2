@@ -17,6 +17,9 @@ Prérequis :
 + Python 3 ou supérieur
 + Packages :  BeautifulSoup4, Requests
 
+**Pour récuperer les fichiers du projet :**
+exécuter : git clone https://github.com/NicolasF425/Projet2.git
+
 **Pour créer l'environnement virtuel _env_ :**
 Dans le répertoire du projet exécuter : python -m venv env
 Puis dans .../env/Scripts exécuter _activate_
