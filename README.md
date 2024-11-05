@@ -26,16 +26,11 @@ Puis dans .../env/Scripts exécuter _activate_
 
 **Pour installer les 2 packages requis :**
 
-Aller dans le répertoire _env_ puis exécuter :
-
-pip install requests
-
-pip install beautifulsoup4
-
+Aller dans le répertoire _env_ puis exécuter : pip install -r requirements.txt
 
 **Execution du programme :**
 
-python main.py
+_python main.py_
 
 Créé un répertoire csv et un répertoire img
 
