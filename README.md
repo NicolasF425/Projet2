@@ -1,6 +1,12 @@
-Programme de demonstration de scrapping sur le site https://books.toscrape.com/ dans le cadre d'une formation Python
+## Programme de demonstration de scrapping sur le site https://books.toscrape.com/ dans le cadre d'une formation Python
 
-Pour chaque livre, extrait les informations suivantes :
+### Description du contexte
+
+Dans le cadre d'une analyse de marché, on souhaite réaliser une démonstration de scrapping avec utilisation du processus ETL (Extract Transform Load) ;
+
+Nous allons récupérer le code html du site (Extract), extraire et formater les données recherchées (Transform) puis les écrire dans des fichiers Load)
+
+**Pour chaque livre, extrait les informations suivantes :**
  + product_page_url
  + universal_ product_code (upc)
  + title
@@ -12,10 +18,13 @@ Pour chaque livre, extrait les informations suivantes :
  + review_rating
  + image_url
 
-Prérequis : 
+Les données seront ensuite inscrites dans des fichiers csv et les images sauvegardées.
 
-+ Python 3 ou supérieur
-+ Packages :  BeautifulSoup4, Requests
+### **Prérequis :** 
+
++ Un envorionnement de développement (VSCode, Pycharm...)
++ Python 3.X
++ avoir installé pip (gestionnaire de packages pour python) s'il n'est pas présent
 
 **Pour récuperer les fichiers du projet :**
 exécuter : git clone https://github.com/NicolasF425/Projet2.git
@@ -24,18 +33,20 @@ exécuter : git clone https://github.com/NicolasF425/Projet2.git
 Dans le répertoire du projet exécuter : python -m venv env
 Puis dans .../env/Scripts exécuter _activate_
 
-**Pour installer les 2 packages requis :**
+**Pour installer les packages requis :**
 
 Aller dans le répertoire _env_ puis exécuter : pip install -r requirements.txt
 
-**Execution du programme :**
+### **Execution du programme :**
 
 _python main.py_
 
-Créé un répertoire csv et un répertoire img
+Le programme va créer un répertoire csv et un répertoire img
 
-Inscrit les livres dans un fichier csv par catégories;
+Inscrit les informations à raison d'un livre par ligne,  dans un fichier csv par catégories;
 
 Télécharge également les images pour tous les livres.
+
+La durée de l'exécution est de quelque minutes.
 
 
