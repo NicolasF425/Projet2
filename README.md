@@ -6,7 +6,7 @@ Dans le cadre d'une analyse de marché, on souhaite réaliser une démonstration
 
 Nous allons récupérer le code html du site (Extract), extraire et formater les données recherchées (Transform) puis les écrire dans des fichiers Load)
 
-**Pour chaque livre, extrait les informations suivantes :**
+**Pour chaque livre, on extrait les informations suivantes :**
  + product_page_url
  + universal_ product_code (upc)
  + title
@@ -22,20 +22,26 @@ Les données seront ensuite inscrites dans des fichiers csv et les images sauveg
 
 ### **Prérequis :** 
 
-+ Un envorionnement de développement (VSCode, Pycharm...)
++ Un environnement de développement (VSCode, Pycharm...)
 + Python 3.X
 + avoir installé pip (gestionnaire de packages pour python) s'il n'est pas présent
 
-**Pour récuperer les fichiers du projet :**
+
+### **Pour récuperer les fichiers du projet :**
+
 exécuter : git clone https://github.com/NicolasF425/Projet2.git
 
-**Pour créer l'environnement virtuel _env_ :**
-Dans le répertoire du projet exécuter : python -m venv env
-Puis dans .../env/Scripts exécuter _activate_
+### **Pour créer l'environnement virtuel _env_ et l'activer:**
 
-**Pour installer les packages requis :**
+Dans le répertoire du projet exécuter : python -m venv env
+
+Puis dans env/Scripts exécuter _activate_
+
+### **Pour installer les dépendances :**
 
 Aller dans le répertoire _env_ puis exécuter : pip install -r requirements.txt
+
+Le fichier requirements.txt doit être présent dans le dossier du projet
 
 ### **Execution du programme :**
 
@@ -43,10 +49,9 @@ _python main.py_
 
 Le programme va créer un répertoire csv et un répertoire img
 
-Inscrit les informations à raison d'un livre par ligne,  dans un fichier csv par catégories;
+Inscrit les informations à raison d'un livre par ligne,  dans un fichier csv par catégories.
 
 Télécharge également les images pour tous les livres.
 
-La durée de l'exécution est de quelque minutes.
 
 
