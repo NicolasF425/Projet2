@@ -31,11 +31,19 @@ Les données seront ensuite inscrites dans des fichiers csv et les images sauveg
 
 exécuter : git clone https://github.com/NicolasF425/Projet2.git
 
-### **Pour créer l'environnement virtuel _env_ et l'activer:**
+### **Pour créer l'environnement virtuel _env_**
 
 Dans le répertoire du projet exécuter : python -m venv env
 
-Puis dans env/Scripts exécuter _activate_
+Pour activer l'environnement virtuel, Utilisez la commande selon votre système d'exploitation.
+
+**Activation sur Windows** :
+
+dans env/Scripts exécuter _activate_
+
+**Activation sur MacOS/Linux** :
+
+exécuter à partir du répertoire projet: source env/bin/activate
 
 ### **Pour installer les dépendances :**
 
