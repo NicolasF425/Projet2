@@ -118,7 +118,7 @@ def get_book_infos(url, category):
 # RETOURNE : aucun retour
 def write_book_csv(liste_infos, filename):
 
-    # ouvre un fichier livre.csv en écriture ou le créé
+    # ouvre un fichier en écriture
     f = open(filename, 'a', encoding='utf-8')
 
     # insertion du separateur ,
