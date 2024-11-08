@@ -26,22 +26,27 @@ Les données seront ensuite inscrites dans des fichiers csv et les images sauveg
 + Python 3.X
 + avoir installé pip (gestionnaire de packages pour python) s'il n'est pas présent
 
+### exécution des commandes
 
-### **Pour récuperer les fichiers du projet :**
+Sous Windows : avec la ligne de commandes (cmd)
+
+Sous Linux : dans le bash
+
+### Pour récuperer les fichiers du projet :
 
 exécuter : git clone https://github.com/NicolasF425/Projet2.git
 
-### **Pour créer l'environnement virtuel _env_**
+### Pour créer l'environnement virtuel _env_
 
 Dans le répertoire du projet exécuter : python -m venv env
 
 Pour activer l'environnement virtuel, Utilisez la commande selon votre système d'exploitation.
 
-**Activation sur Windows** :
+**Activation sur Windows :**
 
 dans env/Scripts exécuter _activate_
 
-**Activation sur MacOS/Linux** :
+**Activation sur MacOS/Linux :**
 
 exécuter à partir du répertoire projet: source env/bin/activate
 
@@ -60,6 +65,9 @@ Le programme va créer un répertoire csv et un répertoire img
 Inscrit les informations à raison d'un livre par ligne,  dans un fichier csv par catégories.
 
 Télécharge également les images pour tous les livres.
+
+La durée d'éxecution peut varier entre 10 e 20 minutes environ.
+
 
 
 
