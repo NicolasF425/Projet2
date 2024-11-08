@@ -4,9 +4,6 @@ import requests as rq
 from p2_phase1 import get_book_infos, write_book_csv
 import os
 from datetime import datetime as dt
-from p2_phase1 import get_book_infos, write_book_csv
-import os
-from datetime import datetime as dt
 
 # 
 header = "product_page_url,universal_product_code,title,price_including_tax,price_excluding_tax,number_available,product_description," \
