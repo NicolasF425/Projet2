@@ -34,6 +34,8 @@ def all_books_infos(url):
                 first = False
             else:
                 books_infos_by_category(cat_url)
+
+        print("traitements terminés")
         
     else:
         print("page site non trouvée")
