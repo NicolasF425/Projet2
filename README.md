@@ -44,7 +44,7 @@ Pour activer l'environnement virtuel, Utilisez la commande selon votre système 
 
 **Activation sur Windows :**
 
-dans env/Scripts exécuter _activate_
+exécuter à partir du répertoire projet: env\Scripts\activate
 
 **Activation sur MacOS/Linux :**
 
@@ -52,7 +52,7 @@ exécuter à partir du répertoire projet: source env/bin/activate
 
 ### **Pour installer les dépendances :**
 
-Aller dans le répertoire _env_ puis exécuter : pip install -r requirements.txt
+Aller dans le répertoire du projet puis exécuter : pip install -r requirements.txt
 
 Le fichier requirements.txt doit être présent dans le dossier du projet
 
