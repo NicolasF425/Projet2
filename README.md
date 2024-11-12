@@ -66,7 +66,7 @@ Inscrit les informations à raison d'un livre par ligne,  dans un fichier csv pa
 
 Télécharge également les images pour tous les livres.
 
-La durée d'éxecution peut varier entre 10 e 20 minutes environ.
+La durée d'éxecution peut varier entre 15 et 20 minutes environ.
 
 
 
